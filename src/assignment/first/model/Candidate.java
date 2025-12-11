@@ -1,7 +1,7 @@
 package assignment.first.model;
 
 public class Candidate {
-    private final String name;
+    private String name;
     private int score;
 
     public Candidate(String name, int score) {
@@ -23,6 +23,10 @@ public class Candidate {
     public void setScore(int score) {
         validateScore(score);
         this.score = score;
+    }
+    public void setName(String name){
+        validateName(name);
+        this.name = name;
     }
 
     private void validateName(String name) {

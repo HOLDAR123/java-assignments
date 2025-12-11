@@ -1,8 +1,8 @@
 package assignment.first.model;
 
 public final class Exam {
-    private final String title;
-    private final int numberOfQuestions;
+    private String title;
+    private int numberOfQuestions;
 
     public Exam(String title, int numberOfQuestions) {
         validateTitle(title);
@@ -16,8 +16,16 @@ public final class Exam {
         return title;
     }
 
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
     public int getNumberOfQuestions() {
         return numberOfQuestions;
+    }
+
+    public void setNumberOfQuestions(int numberOfQuestions) {
+        this.numberOfQuestions = numberOfQuestions;
     }
 
     private void validateTitle(String title) {

@@ -10,6 +10,8 @@ public class Main {
         System.out.println("Exam-1 was created: " + exam1);
         System.out.println("Exam-2 was created: " + exam2);
 
+        exam2.setTitle("Final Exam");
+
         Candidate candidate1 = new Candidate("Timur Yesmagambetov", 0);
         Candidate candidate2 = new Candidate("Timur Yesmagambetov", 0);
         candidate1.setScore(85);
