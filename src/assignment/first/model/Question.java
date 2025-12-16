@@ -7,7 +7,7 @@ public class Question {
     public Question(String questionText, String answer) {
         validateQuestionText(questionText);
         validateAnswer(answer);
-        
+
         this.questionText = questionText;
         this.answer = answer;
     }
@@ -41,5 +41,9 @@ public class Question {
             throw new IllegalArgumentException("Answer cant be null or empty");
         }
     }
-}
 
+    @Override
+    public String toString() {
+        return "Question{questionText='" + questionText + "', answer='" + answer + "'}";
+    }
+}

@@ -7,7 +7,7 @@ public final class Exam {
     public Exam(String title, int numberOfQuestions) {
         validateTitle(title);
         validateNumberOfQuestions(numberOfQuestions);
-        
+
         this.title = title;
         this.numberOfQuestions = numberOfQuestions;
     }
@@ -39,5 +39,9 @@ public final class Exam {
             throw new IllegalArgumentException("Number of questions must be a positive number");
         }
     }
-}
 
+    @Override
+    public String toString() {
+        return "Exam{title='" + title + "', numberOfQuestions=" + numberOfQuestions + "}";
+    }
+}

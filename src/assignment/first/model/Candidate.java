@@ -7,7 +7,7 @@ public class Candidate {
     public Candidate(String name, int score) {
         validateName(name);
         validateScore(score);
-        
+
         this.name = name;
         this.score = score;
     }
@@ -24,7 +24,8 @@ public class Candidate {
         validateScore(score);
         this.score = score;
     }
-    public void setName(String name){
+
+    public void setName(String name) {
         validateName(name);
         this.name = name;
     }
@@ -40,5 +41,9 @@ public class Candidate {
             throw new IllegalArgumentException("Score cant be negative");
         }
     }
-}
 
+    @Override
+    public String toString() {
+        return "Candidate{name='" + name + "', score=" + score + "}";
+    }
+}

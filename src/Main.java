@@ -25,9 +25,14 @@ public class Main {
         System.out.println("Question-1: " + question1);
         System.out.println("Question-2: " + question2);
 
-        System.out.println(exam1.getNumberOfQuestions() == exam2.getNumberOfQuestions() ? "Numbers of questions are equal" : "No Numbers of questions arent equal");
-        System.out.println(exam1.getTitle().equals(exam2.getTitle()) ? "Exams titles are equal" : "No Exams titles arent equal");
-        System.out.println(candidate1.getName().equals(candidate2.getName()) ? "Candidates are equal" : "No Candidates arent equal");
-        System.out.println(question1.getQuestionText().equals(question2.getQuestionText()) ? "Questions are equal" : "No Questions arent equal");
+        System.out
+                .println(exam1.getNumberOfQuestions() == exam2.getNumberOfQuestions() ? "Numbers of questions are equal"
+                        : "No Numbers of questions arent equal");
+        System.out.println(
+                exam1.getTitle().equals(exam2.getTitle()) ? "Exams titles are equal" : "No Exams titles arent equal");
+        System.out.println(candidate1.getName().equals(candidate2.getName()) ? "Candidates are equal"
+                : "No Candidates arent equal");
+        System.out.println(question1.getQuestionText().equals(question2.getQuestionText()) ? "Questions are equal"
+                : "No Questions arent equal");
     }
 }
