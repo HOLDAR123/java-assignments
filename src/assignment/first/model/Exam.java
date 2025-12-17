@@ -17,6 +17,7 @@ public final class Exam {
     }
 
     public void setTitle(String title) {
+        validateTitle(title);
         this.title = title;
     }
 
@@ -25,6 +26,7 @@ public final class Exam {
     }
 
     public void setNumberOfQuestions(int numberOfQuestions) {
+        validateNumberOfQuestions(numberOfQuestions);
         this.numberOfQuestions = numberOfQuestions;
     }
 
