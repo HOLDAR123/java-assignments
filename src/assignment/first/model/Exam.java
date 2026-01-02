@@ -1,6 +1,6 @@
 package assignment.first.model;
 
-public final class Exam {
+public class Exam extends Entity {
     private String title;
     private int numberOfQuestions;
 
@@ -43,7 +43,27 @@ public final class Exam {
     }
 
     @Override
+    public String getDisplayName() {
+        return title;
+    }
+
+    @Override
     public String toString() {
-        return "Exam{title='" + title + "', numberOfQuestions=" + numberOfQuestions + "}";
+        return "Exam{id=" + id + ", title='" + title + "', numberOfQuestions=" + numberOfQuestions + "}";
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null || getClass() != obj.getClass())
+            return false;
+        Exam exam = (Exam) obj;
+        return numberOfQuestions == exam.numberOfQuestions && title.equals(exam.title);
+    }
+
+    @Override
+    public int hashCode() {
+        return title.hashCode() * 31 + numberOfQuestions;
     }
 }
