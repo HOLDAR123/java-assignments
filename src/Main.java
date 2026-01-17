@@ -1,5 +1,6 @@
 import assignment.first.model.Candidate;
 import assignment.first.model.DataPool;
+import assignment.first.model.Database;
 import assignment.first.model.Entity;
 import assignment.first.model.Exam;
 import assignment.first.model.Question;
@@ -9,6 +10,7 @@ import java.util.*;
 public class Main {
 
         public static void main(String[] args) {
+                Database database = Database.getInstance();
                 Scanner scanner = new Scanner(System.in);
 
                 DataPool<Candidate> candidatePool = new DataPool<>();
@@ -25,7 +27,9 @@ public class Main {
                         System.out.println("Enter candidate score " + (i + 1) + ":");
                         int score = scanner.nextInt();
                         scanner.nextLine();
-                        candidatePool.add(new Candidate(name, score));
+                        Candidate candidate = new Candidate(name, score);
+                        candidatePool.add(candidate);
+                        database.saveCandidate(candidate);
                 }
 
                 System.out.println("Enter number of exams:");
@@ -38,7 +42,9 @@ public class Main {
                         System.out.println("Enter number of questions:");
                         int questions = scanner.nextInt();
                         scanner.nextLine();
-                        examPool.add(new Exam(title, questions));
+                        Exam exam = new Exam(title, questions);
+                        examPool.add(exam);
+                        database.saveExam(exam);
                 }
 
                 System.out.println("Enter number of questions:");
@@ -50,7 +56,9 @@ public class Main {
                         String questionText = scanner.nextLine();
                         System.out.println("Enter answer:");
                         String answer = scanner.nextLine();
-                        questionPool.add(new Question(questionText, answer));
+                        Question question = new Question(questionText, answer);
+                        questionPool.add(question);
+                        database.saveQuestion(question);
                 }
 
                 System.out.println("=== All Candidates ===");
@@ -107,6 +115,49 @@ public class Main {
                 entities.forEach(entity -> System.out
                                 .println(entity.getDisplayName() + " (ID: " + entity.getId() + ")"));
 
+                System.out.println("\n=== Loading from database ===");
+                System.out.println("Candidates from DB:");
+                database.loadAllCandidates().forEach(System.out::println);
+                System.out.println("Exams from DB:");
+                database.loadAllExams().forEach(System.out::println);
+                System.out.println("Questions from DB:");
+                database.loadAllQuestions().forEach(System.out::println);
+
+                System.out.println("\n=== Database Operations Demo ===");
+                if (!candidatePool.isEmpty()) {
+                        Candidate firstCandidate = candidatePool.getAll().get(0);
+                        System.out.println("Updating first candidate score to 95:");
+                        firstCandidate.setScore(95);
+                        database.updateCandidate(firstCandidate);
+                        System.out.println("Updated: " + firstCandidate);
+                }
+
+                if (!examPool.isEmpty()) {
+                        Exam firstExam = examPool.getAll().get(0);
+                        System.out.println("Updating first exam title:");
+                        firstExam.setTitle("Updated " + firstExam.getTitle());
+                        database.updateExam(firstExam);
+                        System.out.println("Updated: " + firstExam);
+                }
+
+                System.out.println("\n=== After Update ===");
+                System.out.println("Candidates from DB:");
+                database.loadAllCandidates().forEach(System.out::println);
+                System.out.println("Exams from DB:");
+                database.loadAllExams().forEach(System.out::println);
+
+                System.out.println("\n=== Delete Operation Demo ===");
+                System.out.println("Enter candidate ID to delete (or 0 to skip):");
+                int deleteId = scanner.nextInt();
+                scanner.nextLine();
+                if (deleteId > 0) {
+                        database.deleteCandidate(deleteId);
+                        System.out.println("Candidate with ID " + deleteId + " deleted");
+                        System.out.println("Remaining candidates:");
+                        database.loadAllCandidates().forEach(System.out::println);
+                }
+
                 scanner.close();
+                database.close();
         }
 }

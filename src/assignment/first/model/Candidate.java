@@ -42,6 +42,8 @@ public class Candidate extends Entity {
         }
     }
 
+
+
     @Override
     public String getDisplayName() {
         return name;
