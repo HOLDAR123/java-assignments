@@ -21,11 +21,18 @@ public class Database {
 
     private Database() {
         try {
+            try {
+                Class.forName("org.postgresql.Driver");
+            } catch (ClassNotFoundException e) {
+                System.err.println("PostgreSQL driver not found. Trying to load without explicit class loading...");
+            }
             connection = DriverManager.getConnection(URL, USER, PASSWORD);
             System.out.println("Connected to database");
             createTables();
         } catch (SQLException e) {
             System.err.println("Error connecting to database:");
+            System.err.println("URL: " + URL);
+            System.err.println("Make sure PostgreSQL is running and database 'assignment' exists.");
             e.printStackTrace();
         }
     }
